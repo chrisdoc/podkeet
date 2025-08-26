@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v1.0.7 (2025-08-26)
+
+### Bug Fixes
+
+- **release**: Use 'pypi' environment for publish job
+  ([`90f80ce`](https://github.com/chrisdoc/podkeet/commit/90f80cea437063586df74f6c43bf8c1a55da8d9c))
+
+### Documentation
+
+- Add .github/copilot-instructions.md for AI agents (architecture, workflows, CI/CD)
+  ([`3590bc2`](https://github.com/chrisdoc/podkeet/commit/3590bc23fa45206bf9b0933f0b8b7be590d40b62))
+
+
 ## v1.0.6 (2025-08-26)
 
 ### Bug Fixes
