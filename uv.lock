@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 2
 requires-python = ">=3.13"
 
 [[package]]
@@ -567,7 +567,7 @@ wheels = [
 
 [[package]]
 name = "podkeet"
-version = "0.1.1"
+version = "1.0.7"
 source = { editable = "." }
 dependencies = [
     { name = "parakeet-mlx" },
