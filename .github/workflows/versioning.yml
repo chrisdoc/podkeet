@@ -31,5 +31,10 @@ jobs:
       - name: Sync dev dependencies
         run: uv sync --extra dev
 
+      - name: Configure Git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Semantic Release - version
         run: uv run semantic-release version
