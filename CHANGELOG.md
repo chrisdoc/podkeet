@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.2 (2025-08-26)
+
+### Bug Fixes
+
+- 🐛 update macOS requirements in README
+  ([`86e519c`](https://github.com/chrisdoc/podkeet/commit/86e519c31268f37dc951f3ff41a98531382c5a6d))
+
+
 ## v1.0.1 (2025-08-26)
 
 ### Bug Fixes
