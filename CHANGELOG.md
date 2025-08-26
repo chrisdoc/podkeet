@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v1.0.4 (2025-08-26)
+
+### Bug Fixes
+
+- Trigger another patch bump
+  ([`4361f0c`](https://github.com/chrisdoc/podkeet/commit/4361f0c99946d25c0f8a25c4ed5bf484fbc49636))
+
+### Continuous Integration
+
+- **versioning**: Pass GITHUB_TOKEN to semantic-release and push follow-tags
+  ([`f801a24`](https://github.com/chrisdoc/podkeet/commit/f801a24c3f90caebb3246d1860811611258cb179))
+
+
 ## v1.0.3 (2025-08-26)
 
 ### Bug Fixes
