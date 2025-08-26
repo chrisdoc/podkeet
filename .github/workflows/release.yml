@@ -35,7 +35,7 @@ jobs:
         run: uv sync
 
       - name: Build
-        run: uvx build
+        run: uvx --from build pyproject-build
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
