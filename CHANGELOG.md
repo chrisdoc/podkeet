@@ -2,6 +2,29 @@
 
 <!-- version list -->
 
+## v1.0.1 (2025-08-26)
+
+### Bug Fixes
+
+- README formatting and CI build stability adjustments
+  ([`7dce40d`](https://github.com/chrisdoc/podkeet/commit/7dce40df8b7652a90021925af7f89706cdd303e5))
+
+### Chores
+
+- **ci**: 🔧 upgrade `astral-sh/setup-uv` to v6
+  ([`eee0bf8`](https://github.com/chrisdoc/podkeet/commit/eee0bf8e70f5c0ef9186dbd7687ec1bf0e62db28))
+
+### Continuous Integration
+
+- Add package build step and upload dist artifacts in CI
+  ([`d8c78ff`](https://github.com/chrisdoc/podkeet/commit/d8c78fffa8b0ad898b65460d8f36f5a98133924e))
+
+### Documentation
+
+- Improve and reformat README with quick start, CLI usage, JSON/timing notes, dev and CI/CD details
+  ([`d02d198`](https://github.com/chrisdoc/podkeet/commit/d02d198207c06c4ac1e4bfe2c442a78240d6bcbe))
+
+
 ## v1.0.0 (2025-08-26)
 
 ### Chores
