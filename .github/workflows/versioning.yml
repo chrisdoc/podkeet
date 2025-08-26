@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -47,3 +48,16 @@ jobs:
         run: |
           # Push the commit (if any) and the annotated tag(s) that point to HEAD
           git push origin HEAD:main --follow-tags
+
+      - name: Get new tag
+        id: get_tag
+        run: |
+          TAG=$(git describe --tags --abbrev=0 || echo "")
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Dispatch Release workflow with tag
+        if: steps.get_tag.outputs.tag != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run release.yml -f tag="${{ steps.get_tag.outputs.tag }}"

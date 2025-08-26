@@ -5,12 +5,17 @@ on:
     tags:
       - 'v*.*.*'
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Git tag to build/release (e.g., v1.0.3)'
+        required: false
+        type: string
 
 permissions:
   contents: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.inputs.tag != '' && github.event.inputs.tag || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -21,7 +26,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
+
+      - name: Checkout provided tag
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.tag != ''
+        run: |
+          git fetch --tags --force
+          git checkout "${{ github.event.inputs.tag }}"
+
+      - name: Debug ref
+        run: |
+          echo "event: ${{ github.event_name }}"
+          echo "github.ref: ${{ github.ref }}"
+          echo "input tag: ${{ github.event.inputs.tag }}"
 
       - name: Setup Python 3.13
         uses: actions/setup-python@v5
