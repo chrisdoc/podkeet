@@ -1,6 +1,6 @@
 [project]
 name = "podkeet"
-version = "1.0.2"
+version = "1.0.3"
 description = "Download YouTube audio as MP3 and transcribe with Parakeet-MLX (Apple Silicon/MLX)"
 readme = "README.md"
 requires-python = ">=3.13"

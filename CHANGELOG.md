@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v1.0.3 (2025-08-26)
+
+### Bug Fixes
+
+- Trigger patch release
+  ([`61d4e57`](https://github.com/chrisdoc/podkeet/commit/61d4e57369592639a09b98bb91d3da7a98911eee))
+
+### Continuous Integration
+
+- **versioning**: Push tags after semantic-release to trigger release workflow
+  ([`16e6ff5`](https://github.com/chrisdoc/podkeet/commit/16e6ff59d21546926398b3247130f358c43d243b))
+
+
 ## v1.0.2 (2025-08-26)
 
 ### Bug Fixes
