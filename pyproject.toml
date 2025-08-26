@@ -20,6 +20,7 @@ dev = [
   "pytest>=8.0",
   "pytest-mock>=3.12",
   "ruff>=0.4",
+  "python-semantic-release>=9.8",
 ]
 
 [project.scripts]
@@ -51,5 +52,20 @@ skip-magic-trailing-comma = false
 
 [tool.pytest.ini_options]
 addopts = "-ra"
+
+
+[tool.semantic_release]
+# Use Conventional Commits to determine the next version and generate changelog
+branch = "main"
+commit_parser = "conventional"
+tag_format = "v{version}"
+version_source = "tag"
+changelog_file = "CHANGELOG.md"
+build_command = "uv build"
+dist_path = "dist"
+upload_to_pypi = false
+version_toml = [
+  "pyproject.toml:project.version",
+]
 
 
