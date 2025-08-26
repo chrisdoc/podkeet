@@ -1,0 +1,55 @@
+[project]
+name = "podkeet"
+version = "0.1.0"
+description = "Download YouTube audio as MP3 and transcribe with Parakeet-MLX (Apple Silicon/MLX)"
+readme = "README.md"
+requires-python = ">=3.13"
+authors = [
+  { name = "Christoph Kieslich" }
+]
+license = { text = "MIT" }
+dependencies = [
+  "yt-dlp>=2024.3",
+  "typer>=0.12",
+  "rich>=13.0",
+  "parakeet-mlx>=0.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "pytest-mock>=3.12",
+  "ruff>=0.4",
+]
+
+[project.scripts]
+podkeet = "podkeet.cli:app"
+
+[build-system]
+requires = ["hatchling>=1.22"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/podkeet"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.format]
+line-ending = "lf"
+quote-style = "preserve"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.ty]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+
+
