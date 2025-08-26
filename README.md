@@ -10,17 +10,24 @@ Download a YouTube video's audio as MP3 with `yt-dlp` and transcribe it using Pa
 
 Parakeet-MLX is installed as a dependency and will use MLX (Metal) on Apple Silicon when `device=auto`.
 
-## Quick start (uv)
-1) Create a virtual environment and install dependencies:
+## Quick start
+Run directly with uvx (no virtualenv needed):
+
+```fish
+uvx podkeet transcribe "https://www.youtube.com/watch?v=dQw4w9WgXcQ" --out-dir ./outputs
+```
+
+Note: The first run will install the `podkeet` CLI automatically. If you prefer a persistent install:
+
+```fish
+uvx pip install -U podkeet
+```
+
+Or, if you prefer working in a virtual environment:
 
 ```fish
 uv venv --python 3.13
 uv sync --extra dev
-```
-
-2) Use the CLI:
-
-```fish
 podkeet transcribe "https://www.youtube.com/watch?v=dQw4w9WgXcQ" --out-dir ./outputs
 ```
 
