@@ -56,6 +56,16 @@ jobs:
       - name: CLI smoke test
         run: uv run podkeet --version
 
+      - name: Build package
+        run: uvx --from build pyproject-build
+
+      - name: Upload dist artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/*
+          if-no-files-found: error
+
   dependency-review:
     if: github.event_name == 'pull_request'
     name: Dependency Review
