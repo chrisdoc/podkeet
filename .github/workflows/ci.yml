@@ -30,7 +30,7 @@ jobs:
           python-version: '3.13'
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@v1
+        uses: astral-sh/setup-uv@v6
 
       - name: Cache uv
         uses: actions/cache@v4
