@@ -37,10 +37,13 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Semantic Release - version
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: uv run semantic-release version
 
       - name: Push version bump commit and tags
+        if: always()
         run: |
-          # Push the commit (if any) and ensure tags are pushed so release workflow triggers
-          git push origin HEAD:main
-          git push --tags
+          # Push the commit (if any) and the annotated tag(s) that point to HEAD
+          git push origin HEAD:main --follow-tags
