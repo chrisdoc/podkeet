@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v1.0.6 (2025-08-26)
+
+### Bug Fixes
+
+- Trigger patch bump and dispatch release from versioning
+  ([`80bd6ca`](https://github.com/chrisdoc/podkeet/commit/80bd6ca70c75718a13e0ad0fd322dd8c57209c3c))
+
+### Continuous Integration
+
+- Dispatch Release workflow from Versioning with new tag; fix release workflow inputs
+  ([`24fa5ce`](https://github.com/chrisdoc/podkeet/commit/24fa5ce61ec5406c11ad5875c4fd1e93c0408802))
+
+
 ## v1.0.5 (2025-08-26)
 
 ### Bug Fixes
