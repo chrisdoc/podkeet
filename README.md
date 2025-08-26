@@ -1,10 +1,9 @@
-– Python >= 3.13
 # podkeet
 
 Download a YouTube video's audio as MP3 with `yt-dlp` and transcribe it using Parakeet-MLX (MLX on Apple Silicon).
 
 ## Requirements
-- macOS on Apple Silicon (M1/M2/M3)
+- macOS on Apple Silicon (M1/M2/M3/M4)
 - Python `>= 3.13`
 - `ffmpeg` (for `yt-dlp` post-processing)
   - Install on macOS: `brew install ffmpeg`
