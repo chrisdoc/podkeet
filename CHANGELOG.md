@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v1.0.5 (2025-08-26)
+
+### Bug Fixes
+
+- Trigger patch release with corrected workflows
+  ([`4831abd`](https://github.com/chrisdoc/podkeet/commit/4831abd77901ce679a9b6733496f2026b7db31a6))
+
+### Continuous Integration
+
+- **release**: Restore valid tag-push release workflow
+  ([`288fbf6`](https://github.com/chrisdoc/podkeet/commit/288fbf623170da512464bffc0455362ccc1a283e))
+
+
 ## v1.0.4 (2025-08-26)
 
 ### Bug Fixes
