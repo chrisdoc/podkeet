@@ -38,3 +38,9 @@ jobs:
 
       - name: Semantic Release - version
         run: uv run semantic-release version
+
+      - name: Push version bump commit and tags
+        run: |
+          # Push the commit (if any) and ensure tags are pushed so release workflow triggers
+          git push origin HEAD:main
+          git push --tags
