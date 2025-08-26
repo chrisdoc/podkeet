@@ -62,4 +62,3 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist
-          # If not using OIDC, set password: ${{ secrets.PYPI_API_TOKEN }} and remove id-token permission
