@@ -1,7 +1,6 @@
 import re
 from pathlib import Path
 from typer.testing import CliRunner
-from unittest.mock import MagicMock
 
 from podkeet.cli import app, _fmt_duration
 from podkeet.transcriber import TranscriptionResult
