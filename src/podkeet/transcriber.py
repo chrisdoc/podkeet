@@ -279,7 +279,8 @@ def _split_audio(input_path: Path, chunk_seconds: int = 600) -> Tuple[List[Path]
 
 @dataclass
 class TranscriptionResult:
-    text: str
+    content: str
+    format: str
     out_path: Path
 
 
@@ -294,8 +295,8 @@ def transcribe(
 ) -> TranscriptionResult:
     """Transcribe the given audio file using Parakeet-MLX.
 
-    Downloads the model if missing via from_pretrained and writes output in
-    the requested format.
+    Downloads the model if missing via from_pretrained and returns the
+    transcription in the requested format.
     """
     ensure_ffmpeg()  # required by parakeet_mlx.audio.load_audio
 
@@ -353,6 +354,5 @@ def transcribe(
         raise ValueError(f"Unsupported format: {out_format}. Choose from txt|srt|vtt|json")
 
     content = formatters[out_format](result)
-    out_path.write_text(content, encoding="utf-8")
 
-    return TranscriptionResult(text=_to_txt(result), out_path=out_path)
+    return TranscriptionResult(content=content, format=out_format, out_path=out_path)
