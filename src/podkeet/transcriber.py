@@ -281,6 +281,7 @@ def _split_audio(input_path: Path, chunk_seconds: int = 600) -> Tuple[List[Path]
 class TranscriptionResult:
     text: str
     out_path: Path
+    formatted_content: str
 
 
 def transcribe(
@@ -355,4 +356,4 @@ def transcribe(
     content = formatters[out_format](result)
     out_path.write_text(content, encoding="utf-8")
 
-    return TranscriptionResult(text=_to_txt(result), out_path=out_path)
+    return TranscriptionResult(text=_to_txt(result), out_path=out_path, formatted_content=content)

@@ -45,7 +45,7 @@ uvx pip install -U podkeet
 
 ## CLI reference
 - `podkeet download URL --out-dir PATH [--no-timing]`
-- `podkeet transcribe URL_OR_FILE --out-dir PATH [--keep-audio] [--language auto|en|…] [--model NAME] [--format txt|srt|vtt|json] [--device auto|mps|cpu] [--no-timing] [--version]`
+- `podkeet transcribe URL_OR_FILE --out-dir PATH [--keep-audio] [--language auto|en|…] [--model NAME] [--format txt|srt|vtt|json] [--device auto|mps|cpu] [--no-timing] [--stdout] [--version]`
 
 Notes:
 - If `ffmpeg` is missing, a clear message explains how to install it.
@@ -53,6 +53,7 @@ Notes:
 - On Apple Silicon, `device=auto` prefers MLX (`mps`) and falls back to CPU if needed.
 - Timing: The CLI shows elapsed time for download and transcription; hide with `--no-timing`.
 - JSON: When `--format json` is used, the CLI prints a compact JSON summary to stdout (suitable for automation).
+- **Stdout**: Use `--stdout` to output transcript content to stdout for piping to other applications.
 
 ## Robustness
 - Filenames with special characters: We detect the actual file written by `yt-dlp` instead of guessing by title, avoiding path mismatches.
@@ -72,6 +73,15 @@ podkeet transcribe ./podcasts/example.mp3 --out-dir ./podcasts --format srt
 
 # JSON summary output (includes timings):
 podkeet transcribe "https://www.youtube.com/watch?v=dQw4w9WgXcQ" --format json | jq
+
+# Output transcript to stdout for piping
+podkeet transcribe video.mp3 --stdout | grep "keyword"
+
+# Output SRT format to stdout and save to custom file
+podkeet transcribe video.mp3 --stdout --format srt > custom_subtitles.srt
+
+# Pipe JSON transcript to jq for processing
+podkeet transcribe audio.mp3 --stdout --format json | jq '.text'
 ```
 
 ## Development
