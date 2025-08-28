@@ -91,6 +91,7 @@ def transcribe(
     format: str = typer.Option("txt", "--format", help="Output format: txt|srt|vtt|json"),
     device: str = typer.Option("auto", "--device", help="auto|mps|cpu"),
     no_timing: bool = typer.Option(False, "--no-timing", help="Hide timing lines in output panel"),
+    stdout: bool = typer.Option(False, "--stdout", help="Output transcript to stdout for piping"),
 ):
     """Transcribe from URL or local file."""
     outputs = Outputs(out_dir)
@@ -116,6 +117,12 @@ def transcribe(
         out_dir=outputs.base,
     )
     transcribe_elapsed = perf_counter() - tt0
+
+    # Handle stdout output for piping
+    if stdout:
+        # Output transcript content directly to stdout for piping
+        print(result.formatted_content, end="")
+        return
 
     # If requesting JSON transcript format, print a JSON summary for automation
     if format.lower() == "json":
