@@ -79,6 +79,7 @@ def download(
 def transcribe(
     source: str = typer.Argument(..., help="YouTube URL or local audio file (.mp3)"),
     out_dir: Optional[Path] = typer.Option(None, "--out-dir", help="Where to store outputs"),
+    to_stdout: bool = typer.Option(False, "--stdout", help="Print transcript to stdout"),
     keep_audio: bool = typer.Option(
         False, "--keep-audio", help="Keep downloaded MP3 when using URL"
     ),
@@ -117,8 +118,12 @@ def transcribe(
     )
     transcribe_elapsed = perf_counter() - tt0
 
-    # If requesting JSON transcript format, print a JSON summary for automation
-    if format.lower() == "json":
+    # Write output to file or stdout
+    if to_stdout:
+        print(result.content)
+    # Special case: JSON format without --stdout should emit summary for automation
+    elif result.format == "json":
+        result.out_path.write_text(result.content, encoding="utf-8")
         summary = {
             "status": "ok",
             "transcript_path": str(result.out_path),
@@ -134,6 +139,7 @@ def transcribe(
         # Emit compact JSON to stdout (avoid Rich panel for automation)
         print(json.dumps(summary, ensure_ascii=False))
     else:
+        result.out_path.write_text(result.content, encoding="utf-8")
         details = [f"Transcript saved to {result.out_path}"]
         if not no_timing:
             details += [
