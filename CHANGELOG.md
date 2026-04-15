@@ -2,22 +2,35 @@
 
 <!-- version list -->
 
-## v1.1.1 (2026-04-15)
+## v1.1.0 (2026-04-15)
 
-### Bug Fixes
+### Chores
 
-- Only dispatch release workflow when semantic-release creates a new tag
-  ([`806d3ce`](https://github.com/chrisdoc/podkeet/commit/806d3ce))
+- **deps**: Bump the actions group across 1 directory with 4 updates
+  ([`6e96779`](https://github.com/chrisdoc/podkeet/commit/6e967791b94beb20a8f736d9f5d3ff9ec2db32db))
 
-### Features
+- **deps**: Bump the actions group with 2 updates
+  ([`ebbcffb`](https://github.com/chrisdoc/podkeet/commit/ebbcffbf6cb17dfd3dc2162b970c95b3d3c9e4f5))
 
-- Add video file transcription support (mp4, mkv, avi, mov, webm)
-  ([`af049c8`](https://github.com/chrisdoc/podkeet/commit/af049c8))
+- **deps**: Bump the python group across 1 directory with 8 updates
+  ([`b04969f`](https://github.com/chrisdoc/podkeet/commit/b04969f813c352606bc47c1982a560f732ed0a7b))
+
+- **deps**: Bump the python group with 3 updates
+  ([`dd15792`](https://github.com/chrisdoc/podkeet/commit/dd15792084dcde897bade490ee904a57daf013bf))
+
+- **deps**: Switch Dependabot Python ecosystem to uv (weekly)
+  ([`8a595f0`](https://github.com/chrisdoc/podkeet/commit/8a595f0d2260149c2b8a157f4f78622724885e50))
 
 ### Documentation
 
 - Simplify Quick start to use `uvx podkeet`
-  ([`29ea0c5`](https://github.com/chrisdoc/podkeet/commit/29ea0c5))
+  ([`29ea0c5`](https://github.com/chrisdoc/podkeet/commit/29ea0c564c7e55bfe6e6fada9b0c68ae0cac86ca))
+
+### Features
+
+- Add video file transcription support (mp4, mkv, avi, mov, …)
+  ([`af049c8`](https://github.com/chrisdoc/podkeet/commit/af049c85ea86829db05b5f475823d04020bebcf5))
+
 
 
 ## v1.0.7 (2025-08-26)
