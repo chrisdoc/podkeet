@@ -2,6 +2,24 @@
 
 <!-- version list -->
 
+## v1.1.1 (2026-04-15)
+
+### Bug Fixes
+
+- Only dispatch release workflow when semantic-release creates a new tag
+  ([`806d3ce`](https://github.com/chrisdoc/podkeet/commit/806d3ce))
+
+### Features
+
+- Add video file transcription support (mp4, mkv, avi, mov, webm)
+  ([`af049c8`](https://github.com/chrisdoc/podkeet/commit/af049c8))
+
+### Documentation
+
+- Simplify Quick start to use `uvx podkeet`
+  ([`29ea0c5`](https://github.com/chrisdoc/podkeet/commit/29ea0c5))
+
+
 ## v1.0.7 (2025-08-26)
 
 ### Bug Fixes
