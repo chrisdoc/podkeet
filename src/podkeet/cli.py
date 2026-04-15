@@ -10,7 +10,7 @@ from rich.panel import Panel
 
 from . import Outputs, get_version
 from .downloader import download_audio
-from .ffmpeg_utils import is_url
+from .ffmpeg_utils import is_url, is_video_file, extract_audio_from_video
 from .transcriber import transcribe as run_transcription
 
 app = typer.Typer(
@@ -77,7 +77,7 @@ def download(
 
 @app.command("transcribe")
 def transcribe(
-    source: str = typer.Argument(..., help="YouTube URL or local audio file (.mp3)"),
+    source: str = typer.Argument(..., help="YouTube URL or local audio/video file (.mp3, .mp4, …)"),
     out_dir: Optional[Path] = typer.Option(None, "--out-dir", help="Where to store outputs"),
     keep_audio: bool = typer.Option(
         False, "--keep-audio", help="Keep downloaded MP3 when using URL"
@@ -92,19 +92,28 @@ def transcribe(
     device: str = typer.Option("auto", "--device", help="auto|mps|cpu"),
     no_timing: bool = typer.Option(False, "--no-timing", help="Hide timing lines in output panel"),
 ):
-    """Transcribe from URL or local file."""
+    """Transcribe from URL or local audio/video file."""
     outputs = Outputs(out_dir)
 
     download_elapsed: Optional[float] = None
+    extract_elapsed: Optional[float] = None
+    extracted_audio: Optional[Path] = None
     if is_url(source):
         dt0 = perf_counter()
         mp3_path = download_audio(source, outputs.base)
         download_elapsed = perf_counter() - dt0
     else:
-        mp3_path = Path(source)
-        if not mp3_path.exists():
-            rprint(Panel(f"File not found: {mp3_path}", border_style="red"))
+        local_path = Path(source)
+        if not local_path.exists():
+            rprint(Panel(f"File not found: {local_path}", border_style="red"))
             raise typer.Exit(2)
+        if is_video_file(local_path):
+            et0 = perf_counter()
+            mp3_path = extract_audio_from_video(local_path, outputs.base)
+            extract_elapsed = perf_counter() - et0
+            extracted_audio = mp3_path
+        else:
+            mp3_path = local_path
 
     tt0 = perf_counter()
     result = run_transcription(
@@ -131,22 +140,30 @@ def transcribe(
         }
         if download_elapsed is not None:
             summary["download_seconds"] = download_elapsed
+        if extract_elapsed is not None:
+            summary["extract_seconds"] = extract_elapsed
         # Emit compact JSON to stdout (avoid Rich panel for automation)
         print(json.dumps(summary, ensure_ascii=False))
     else:
         details = [f"Transcript saved to {result.out_path}"]
         if not no_timing:
-            details += [
-                "",
-                f"⏱️  Transcribe: {_fmt_duration(transcribe_elapsed)}",
-            ]
+            details += [""]
             if download_elapsed is not None:
                 details.append(f"⏬  Download:   {_fmt_duration(download_elapsed)}")
+            if extract_elapsed is not None:
+                details.append(f"🎬  Extract:    {_fmt_duration(extract_elapsed)}")
+            details.append(f"⏱️  Transcribe: {_fmt_duration(transcribe_elapsed)}")
         rprint(Panel.fit("\n".join(details), title="Transcription complete", border_style="green"))
 
     if is_url(source) and not keep_audio:
         try:
             mp3_path.unlink(missing_ok=True)
+        except Exception:
+            pass
+
+    if extracted_audio is not None and not keep_audio:
+        try:
+            extracted_audio.unlink(missing_ok=True)
         except Exception:
             pass
 
